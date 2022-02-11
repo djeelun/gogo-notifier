@@ -24,3 +24,6 @@ Run `npm install` and `node index` in the src directory.
     Removes a tracked anime in this channel
 
 Feel free to add more commands
+
+## Extra
+If the gogoanime.film domain ever gets rebased, then the URL in the config.json file should be updated.
