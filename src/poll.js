@@ -1,6 +1,6 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
-const { poll_url } = require("./config.json");
+const { poll_url, collection } = require("./config.json");
 const { MessageEmbed } = require('discord.js');
 
 const sendEmbed = async ($, client, episode, anime, epNumber, link, imageUrl) => {
@@ -41,7 +41,7 @@ module.exports = {
 
         try {
             
-            const following = await client.mongo_db.collection("anime-following").find({}).toArray();
+            const following = await client.mongo_db.collection(collection).find({}).toArray();
 
             const { data } = await axios.get(poll_url);
             const $ = cheerio.load(data);
@@ -66,7 +66,7 @@ module.exports = {
                     await sendEmbed($, client, episode, anime, epNumber, link, imageUrl);
 
                     // Update lastEp
-                    await client.mongo_db.collection("anime-following").updateOne({ name: anime.name }, { $set: { lastEp: epNumber } });
+                    await client.mongo_db.collection(collection).updateOne({ name: anime.name }, { $set: { lastEp: epNumber } });
                 }
                 else {
                     // Debug

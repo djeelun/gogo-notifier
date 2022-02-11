@@ -1,4 +1,5 @@
 const { Client, CommandInteraction } = require("discord.js");
+const { collection } = require("../../config.json");
 
 module.exports = {
     name: "list",
@@ -12,7 +13,7 @@ module.exports = {
      */
     run: async (client, interaction, args) => {
         try {
-            const animes = await client.mongo_db.collection("anime-following").find({}).toArray();
+            const animes = await client.mongo_db.collection(collection).find({}).toArray();
 
             // console.log(animes);
 

@@ -1,4 +1,5 @@
 const { Client, CommandInteraction } = require("discord.js");
+const { collection } = require("../../config.json");
 
 module.exports = {
     name: "add",
@@ -27,7 +28,7 @@ module.exports = {
 
 
             // Check if anime already exists (ignore case)
-            const anime = await client.mongo_db.collection("anime-following").findOne({ name: { $regex: new RegExp(anime_name, "i") } });
+            const anime = await client.mongo_db.collection(collection).findOne({ name: { $regex: new RegExp(anime_name, "i") } });
             if (anime) {
                 // Check if this channel is in channels property
                 if (anime.channels.find(c => c == interaction.channelId)) {
@@ -35,13 +36,13 @@ module.exports = {
                 }
                 else {
                     anime.channels.push(interaction.channelId);
-                    await client.mongo_db.collection("anime-following").updateOne({ name: anime.name }, { $set: { channels: anime.channels } });
+                    await client.mongo_db.collection(collection).updateOne({ name: anime.name }, { $set: { channels: anime.channels } });
                     interaction.followUp({ content: `Now notifying for ${anime_name} in <#${interaction.channelId}>.` });
                 }
             }
             // Create entry if it doesn't exist
             else {
-                await client.mongo_db.collection("anime-following").insertOne({
+                await client.mongo_db.collection(collection).insertOne({
                     name: anime_name,
                     channels: [interaction.channelId],
                     lastEp: ""

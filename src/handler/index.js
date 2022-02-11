@@ -2,7 +2,7 @@ const { glob } = require("glob");
 const { promisify } = require("util");
 const { Client } = require("discord.js");
 const { MongoClient } = require("mongodb");
-const { mongooseConnectionString } = require("../config.json");
+const { mongooseConnectionString, dbName } = require("../config.json");
 const { poll } = require('../poll');
 
 const globPromise = promisify(glob);
@@ -57,7 +57,7 @@ module.exports = async (client) => {
     await client.mongo_client.connect();
     console.log("MongoDB has been connected.");
 
-    client.mongo_db = client.mongo_client.db("aotsunday");
+    client.mongo_db = client.mongo_client.db(dbName);
 
     poll(client);
 
