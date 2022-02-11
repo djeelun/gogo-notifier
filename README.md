@@ -10,6 +10,9 @@ Configure the bot by modifying the variables in the config.json file in the src 
 
 Feel free to replace the mongoDB dependencies with another database.
 
+## Setup
+Run `npm install` and `node index` in the src directory.
+
 ## Commands
 **/list**
     Lists all anime tracked for this channel
