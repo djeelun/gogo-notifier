@@ -15,8 +15,16 @@ module.exports = {
     run: async (client, interaction, args) => {
         
         try {
-            // Delete every document that hasn't been updated in 2 weeks
-            const deleted = await client.mongo_db.collection(collection).deleteMany({ last_updated: { $lt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 14) } });
+            // Delete every document that hasn't been updated in 2 weeks (or if last_updated doesn't exist at all)
+            const deleted = await client.mongo_db.collection(collection).deleteMany({ 
+                last_updated: { 
+                    $or: [{
+                        $lt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 14)
+                    }, {
+                        $exists: false
+                    }]
+                } 
+            });
             interaction.followUp({ content: `Purged ${deleted.deletedCount} anime from the tracking list.` });
 
         } catch (error) {
