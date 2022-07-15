@@ -66,7 +66,7 @@ module.exports = {
                     await sendEmbed($, client, episode, anime, epNumber, link, imageUrl);
 
                     // Update lastEp
-                    await client.mongo_db.collection(collection).updateOne({ name: anime.name }, { $set: { lastEp: epNumber } });
+                    await client.mongo_db.collection(collection).updateOne({ name: anime.name }, { $set: { lastEp: epNumber, last_updated: new Date() } });
                 }
                 else {
                     // Debug

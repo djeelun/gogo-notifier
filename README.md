@@ -23,6 +23,9 @@ Run `npm install` and `node index` in the src directory.
 **/remove \<anime>**
     Removes a tracked anime in this channel
 
+**/purge \<anime>**
+    Removes any anime that hasn't been updated in 2 weeks 
+
 Feel free to add more commands
 
 ## Extra
