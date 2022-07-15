@@ -24,7 +24,7 @@ module.exports = {
                 return;
             }
 
-            const acc = [];
+            let acc = [];
             let totalLength = 0;
 
             for (const anime of animes) {
