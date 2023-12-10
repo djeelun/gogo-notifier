@@ -4,5 +4,5 @@
   "mongooseConnectionString": "",
   "dbName": "aotsunday",
   "collection": "anime-following",
-  "poll_url": "https://gogoanime3.net/"
+  "poll_url": "https://gogoanime3.net"
 }
