@@ -1,8 +1,8 @@
 {
-    "token": "",
-    "prefix": "j!",
-    "mongooseConnectionString": "",
-    "dbName": "aotsunday",
-    "collection": "anime-following",
-    "poll_url": "https://gogoanime.film"
+  "token": "",
+  "prefix": "j!",
+  "mongooseConnectionString": "",
+  "dbName": "aotsunday",
+  "collection": "anime-following",
+  "poll_url": "https://gogoanime3.net/"
 }
